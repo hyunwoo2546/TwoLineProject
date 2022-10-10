@@ -70,7 +70,7 @@ public class BoardServiceTests {
 			return;
 		}
 		
-		log.info("게시글 삭제 번호 : " + service.remove(21L));
+		log.info("게시글 삭제 번호 : " + service.remove(21L)); 
 	}
 	
 }
