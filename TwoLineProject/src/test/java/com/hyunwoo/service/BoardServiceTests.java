@@ -73,4 +73,9 @@ public class BoardServiceTests {
 		log.info("게시글 삭제 번호 : " + service.remove(21L)); 
 	}
 	
+	@Test
+	public void testGetList() {
+		service.getList().forEach(board -> log.info(board));
+	}
+	
 }

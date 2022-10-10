@@ -1,4 +1,4 @@
-package com.hyunwoo.controller;
+package com.hyunwoo.mapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.hyunwoo.domain.BoardVO;
-import com.hyunwoo.mapper.BoardMapper;
 
 import lombok.extern.log4j.Log4j;
 
