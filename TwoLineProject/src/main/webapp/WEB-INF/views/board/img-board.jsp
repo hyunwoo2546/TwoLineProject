@@ -376,30 +376,28 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>#번호</th>
-                                            <th>제목</th>
-                                            <th>작성자</th>
-                                            <th>작성일</th>
-                                            <th>수정일</th>
-                                        </tr>
-                                    </thead>
-                                    <c:forEach items="${list}" var = "board">
-                                    	<tr>
-                                    		<td><c:out value="${board.bno }"></c:out></td>
-                                    		<td>
-                                    		<a href = '/board/get?bno=<c:out value = "${board.bno }"/>'>
-                                    			<c:out value="${board.title }"/>
-                                    		</a>
-                                    		</td>
-                                    		<td><c:out value="${board.writer }"></c:out></td>
-                                    		<td><fmt:formatDate value="${board.regdate }" pattern="yyyy-MM-dd"/></td>
-                                    		<td><fmt:formatDate value="${board.updateDate }" pattern="yyyy-MM-dd"/></td>
-                                    	</tr>
-                                    </c:forEach>
-                                </table>
+                                	<table align = "center" width = "1150" height = "300">	
+										<td>
+											<img src="/resources/img/test.PNG" width = "260" height = "360" alt ="사진">
+										</td>
+										<td>
+											<img src="/resources/img/test.PNG" width = "260" height = "360" alt ="사진">	
+										</td>
+										<td>
+											<img src="/resources/img/test.PNG" width = "260" height = "360" alt ="사진">
+										</td>
+									 </table><br/>
+                                	<table align = "center" width = "1150" height = "300">	
+										<td>
+											<img src="/resources/img/test.PNG" width = "260" height = "360" alt ="사진">
+										</td>
+										<td>
+											<img src="/resources/img/test.PNG" width = "260" height = "360" alt ="사진">
+										</td>
+										<td>
+											<img src="/resources/img/test.PNG" width = "260" height = "360" alt ="사진">
+										</td>
+									 </table>
                             </div>
                         </div>
                     </div>
@@ -431,22 +429,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Modal-->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>\
-                    <h4 class="modal-title" id="myModalLabel">Modal Title</h4>
-                </div>
-                <div class="modal-body">처리가 완료되었습니다.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src="/resources/vendor/jquery/jquery.min.js"></script>
     <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -463,34 +445,6 @@
 
     <!-- Page level custom scripts -->
     <script src="/resources/js/demo/datatables-demo.js"></script>
-
-	<!-- # 제이쿼리 모달 -->
-    <script type="text/javascript">
-    	$(document).ready(function () {
-			var result = '<c:out value="${result}"/>';
-			
-			checkModal(result);
-			
-			history.replaceState({}, null, null);
-			
-			/* # 글 등록 시 모달창 보여주기 */
-			function checkModal (result) {
-				if(result === '' || history.state) {
-					return;
-				}
-				if(parseInt(result) > 0) {
-					$(".modal-body").html("게시글 " + parseInt(result) + "번이 등록 되었습니다.");
-				}
-				
-				$("#myModal").modal("show");
-			}
-			
-			/* # 글 작성 버튼 */
-			$("#btnRegist").on("click", function () {
-				self.location = "/board/register";
-			});
-		});
-    </script>
 
 </body>
 

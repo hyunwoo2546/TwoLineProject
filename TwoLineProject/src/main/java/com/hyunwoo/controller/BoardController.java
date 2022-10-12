@@ -84,6 +84,12 @@ public class BoardController {
 		return "redirect:/board/list";
 		
 	}
+	
+	/* # 이미지 게시판 */
+	@GetMapping("/img-board")
+	public void test() {
+		log.info("이미지 게시판 이동...");
+	}
 
 	
 }
