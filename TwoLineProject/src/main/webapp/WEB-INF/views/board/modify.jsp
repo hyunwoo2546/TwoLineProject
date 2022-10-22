@@ -247,6 +247,8 @@
 	                        <div class="card-body">
 	                            <div class="table-responsive">
 			                    <form action="/board/modify" method="post" role="form">
+			                    	<input type="hidden" name = "pageNum" value='<c:out value = "${cri.pageNum }"/>'>
+                        			<input type="hidden" name = "amount" value='<c:out value = "${cri.amount }" />'>
 	                            		<div class="form-group">
 	                            			<label>글 번호</label>
 	                            			<input class="form-control" name="bno" value='<c:out value="${board.bno }"/>' readonly="readonly">
@@ -319,6 +321,8 @@
 			e.preventDefault();
 			
 			var operation = $(this).data("oper");
+			var pageNumTag = $("input[name='pageNum']").clone();
+		    var amountTag = $("input[name='amount']").clone();
 			
 			console.log(operation);
 			
@@ -327,6 +331,8 @@
 			} else if(operation === 'list') {
 				formObj.attr("action", "/board/list").attr("method","get");
 				formObj.empty();
+			    formObj.append(pageNumTag);
+			    formObj.append(amountTag);
 			}
 			
 			formObj.submit();

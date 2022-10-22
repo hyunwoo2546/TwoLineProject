@@ -1,5 +1,7 @@
 package com.hyunwoo.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +30,9 @@ public class BoardMapperTest {
 		
 		BoardVO vo = new BoardVO();
 		
-		vo.setTitle("»õ·Î¿î Á¦¸ñ");
-		vo.setContent("»õ·Î¿î ³»¿ë");
-		vo.setWriter("»õ·Î¿î ÀÛ¼ºÀÚ");
+		vo.setTitle("ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
+		vo.setContent("ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
+		vo.setWriter("ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½");
 		
 		mapper.insert(vo);
 	}
@@ -40,9 +42,9 @@ public class BoardMapperTest {
 		
 		BoardVO vo = new BoardVO();
 		
-		vo.setTitle("»õ·Î¿î Á¦¸ñ");
-		vo.setContent("»õ·Î¿î ³»¿ë");
-		vo.setWriter("»õ·Î¿î ÀÛ¼ºÀÚ");
+		vo.setTitle("ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
+		vo.setContent("ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
+		vo.setWriter("ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½");
 		
 		mapper.insertSelectKey(vo);
 	}
@@ -50,14 +52,14 @@ public class BoardMapperTest {
 	@Test
 	public void testRead() {
 		
-		log.info("Á¶È¸ÇÑ °Ô½Ã¹° : " + mapper.read(1L));
+		log.info("ï¿½ï¿½È¸ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ : " + mapper.read(1L));
 		
 	}
 	
 	@Test
 	public void testDelete() {
 		
-		log.info("»èÁ¦ÇÑ °Ô½Ã±ÛÀÇ ¹øÈ£ : " + mapper.delete(1L));
+		log.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ ï¿½ï¿½È£ : " + mapper.delete(1L));
 		
 	}
 	
@@ -67,14 +69,22 @@ public class BoardMapperTest {
 		BoardVO vo = new BoardVO();
 		
 		vo.setBno(3L);
-		vo.setTitle("Á¦¸ñ ¼öÁ¤");
-		vo.setContent("³»¿ë ¼öÁ¤");
-		vo.setWriter("ÀÛ¼ºÀÚ º¯°æ");
+		vo.setTitle("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+		vo.setContent("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+		vo.setWriter("ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		
 		int count = mapper.update(vo);
 		
 		log.info("UPDATE COUNT : " + count);
 		
+	}
+	
+	@Test
+	public void testPaging() {
+		
+		List<BoardVO> list = mapper.getList();
+		
+		list.forEach(board -> log.info(board.getBno()));
 		
 	}
 	

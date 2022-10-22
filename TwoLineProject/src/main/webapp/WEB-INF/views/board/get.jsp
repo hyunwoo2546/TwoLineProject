@@ -262,6 +262,8 @@
                            		</div>
                             	<form action="/board/modify" method="get">
                             		<input type="hidden" id = 'bno' name='bno' value='<c:out value = "${board.bno}"/>'>
+                            		<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"></c:out>'>
+                            		<input type="hidden" name="amount" value='<c:out value="${cri.amount }"></c:out>'>
 	                            	<button class="btn btn-primary">수정</button>
     	                       		<button data-oper = 'list' class="btn btn-primary">목록</button>
                             	</form>
@@ -307,7 +309,6 @@
 
     <!-- Page level custom scripts -->
     <script src="/resources/js/demo/datatables-demo.js"></script>
-    
     <!-- # 제이쿼리 -->
     <script type="text/javascript">
     	$(document).ready(function () {
@@ -318,11 +319,10 @@
     			
     			var operation = $(this).data("oper");
     			
-    			
-    			
     			if(operation === 'list') {
-    				formObj.attr("action", "/board/list").attr("method","get");
-    				formObj.empty();
+    				formObj.find("#bno").remove();
+    				formObj.attr("action","/board/list")
+    			    formObj.submit();
     			}
     			formObj.submit();
     		});

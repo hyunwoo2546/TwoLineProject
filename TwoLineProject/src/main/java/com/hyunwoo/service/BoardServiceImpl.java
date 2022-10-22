@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hyunwoo.domain.BoardVO;
+import com.hyunwoo.domain.Criteria;
 import com.hyunwoo.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
@@ -19,51 +20,56 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private BoardMapper mapper;
 	
-	/* # °Ô½Ã±Û µî·Ï */
+	/* # ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ */
 	@Override
 	public void register(BoardVO vo) {
 		
-		log.info("°Ô½Ã±Û µî·Ï : " + vo);
+		log.info("ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ : " + vo);
 		
 		mapper.insertSelectKey(vo);
 		
 	}
 
-	/* # °Ô½Ã±Û Á¶È¸ */
+	/* # ï¿½Ô½Ã±ï¿½ ï¿½ï¿½È¸ */
 	@Override
 	public BoardVO get(Long bno) {
 		
-		log.info("Á¶È¸ °Ô½Ã±Û ¹øÈ£ : " + bno);
+		log.info("ï¿½ï¿½È¸ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½È£ : " + bno);
 		
 		return mapper.read(bno);
 	}
 
-	/* # °Ô½Ã±Û ¼öÁ¤ */
+	/* # ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	@Override
 	public boolean modify(BoardVO vo) {
 		
-		log.info("°Ô½Ã±Û ¼öÁ¤ : " + vo);
+		log.info("ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ : " + vo);
 		
 		return mapper.update(vo) == 1;
 	}
 
-	/* # °Ô½Ã±Û »èÁ¦ */
+	/* # ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	@Override
 	public boolean remove(Long bno) {
 		
-		log.info("°Ô½Ã±Û »èÁ¦ ¹øÈ£ : " + bno);		
+		log.info("ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ : " + bno);		
 		
 		return mapper.delete(bno) == 1;
 		
 	}
 
-	/* # ÀüÃ¼ °Ô½Ã±Û Á¶È¸ */
+	/* # ï¿½ï¿½Ã¼ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½È¸ */
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(Criteria cri) {
 		
-		log.info("°Ô½Ã±Û ÀüÃ¼ Á¶È¸.....");
+		log.info("ï¿½Ô½Ã±ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½È¸.....");
 		
-		return mapper.getList();
+		return mapper.getListWithPaging(cri);
+	}
+	
+	@Override
+	public int getTotal(Criteria cri) {
+		return mapper.getTotalCount(cri);
 	}
 	
 }

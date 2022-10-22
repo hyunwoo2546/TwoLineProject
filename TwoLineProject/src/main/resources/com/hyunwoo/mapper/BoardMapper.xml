@@ -11,6 +11,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 	</select>
 	
+	<select id = "getListWithPaging" resultType="com.hyunwoo.domain.BoardVO">
+		<![CDATA[
+			SELECT
+				bno, title, content, writer, regdate, updatedate
+			FROM 
+				(
+				SELECT /*+INDEX_DESC(TBL_BOARD PK_BOARD) */
+					   rownum rn, bno, title, content, writer, regdate, updatedate
+				FROM tbl_board
+				WHERE rownum <= #{pageNum} * #{amount}
+				)
+			WHERE rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tbl_board where bno > 0
+	</select>
+	
 	<insert id = "insert">
 		insert into tbl_board(bno,title,content,writer)
 		values (seq_board.nextval, #{title}, #{content}, #{writer})

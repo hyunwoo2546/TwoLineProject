@@ -45,8 +45,8 @@ public class BoardControllerTests {
 	@Test
 	public void testRegister() throws Exception{
 		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
-				.param("title", "Å×½ºÆ® »õ±Û Á¦¸ñ")
-				.param("content", "Å×½ºÆ® »õ±Û ³»¿ë")
+				.param("title", "ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")
+				.param("content", "ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")
 				.param("writer", "user00")
 				).andReturn().getModelAndView().getViewName();
 		
@@ -65,8 +65,8 @@ public class BoardControllerTests {
 	public void testModify() throws Exception {
 		String resultPage = mockMvc.perform(MockMvcRequestBuilders.put("/board/modify")
 				.param("bno", "2")
-				.param("title", "2¹ø Á¦¸ñ ¼öÁ¤")
-				.param("content", "2¹ø ¼öÁ¤")
+				.param("title", "2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")
+				.param("content", "2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")
 				.param("writer", "user00")
 				).andReturn().getModelAndView().getViewName();
 		
@@ -82,6 +82,4 @@ public class BoardControllerTests {
 		
 		log.info(resultPage);
 	}
-	
-	
 }

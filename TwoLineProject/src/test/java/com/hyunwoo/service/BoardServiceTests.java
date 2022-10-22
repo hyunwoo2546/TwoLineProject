@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.hyunwoo.domain.BoardVO;
+import com.hyunwoo.domain.Criteria;
 
 import lombok.extern.log4j.Log4j;
 
@@ -20,18 +21,18 @@ public class BoardServiceTests {
 	
 	@Test
 	public void testExist() {
-		log.info("¼­ºñ½º °´Ã¼ : " + service);
+		log.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ : " + service);
 	}
 	
 	@Test
 	public void testRegister() {
 		BoardVO vo = new BoardVO();
 		
-		vo.setTitle("¼­ºñ½º Å×½ºÆ®");
-		vo.setContent("¼­ºñ½º Å×½ºÆ®");
-		vo.setWriter("°­Çö¿ì");
+		vo.setTitle("ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®");
+		vo.setContent("ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®");
+		vo.setWriter("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		
-		log.info("Service...... µî·Ï!" + vo);
+		log.info("Service...... ï¿½ï¿½ï¿½!" + vo);
 		
 		service.register(vo);
 
@@ -53,11 +54,11 @@ public class BoardServiceTests {
 			return;
 		}
 		
-		vo.setTitle("¼öÁ¤ ¼­ºñ½º Å×½ºÆ®");
-		vo.setContent("¼öÁ¤ ¼­ºñ½º Å×½ºÆ®");
-		vo.setWriter("¼öÁ¤ °­Çö¿ì");
+		vo.setTitle("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®");
+		vo.setContent("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®");
+		vo.setWriter("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		
-		log.info("°Ô½Ã±Û ¼öÁ¤ : " + service.modify(vo));
+		log.info("ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ : " + service.modify(vo));
 		
 	}
 	
@@ -70,12 +71,13 @@ public class BoardServiceTests {
 			return;
 		}
 		
-		log.info("°Ô½Ã±Û »èÁ¦ ¹øÈ£ : " + service.remove(21L)); 
+		log.info("ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ : " + service.remove(21L)); 
 	}
 	
 	@Test
 	public void testGetList() {
-		service.getList().forEach(board -> log.info(board));
+//		service.getList().forEach(board -> log.info(board));
+		service.getList(new Criteria(2,10)).forEach(board -> log.info(board));
 	}
 	
 }
