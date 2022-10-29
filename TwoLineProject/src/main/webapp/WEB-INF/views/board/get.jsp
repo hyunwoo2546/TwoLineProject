@@ -264,6 +264,8 @@
                             		<input type="hidden" id = 'bno' name='bno' value='<c:out value = "${board.bno}"/>'>
                             		<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"></c:out>'>
                             		<input type="hidden" name="amount" value='<c:out value="${cri.amount }"></c:out>'>
+                            		<input type="hidden" name="keyword" value='<c:out value="${cri.keyword }"></c:out>'>
+                            		<input type="hidden" name="type" value='<c:out value="${cri.type }"></c:out>'>
 	                            	<button class="btn btn-primary">수정</button>
     	                       		<button data-oper = 'list' class="btn btn-primary">목록</button>
                             	</form>

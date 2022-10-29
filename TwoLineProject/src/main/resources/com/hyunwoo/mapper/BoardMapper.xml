@@ -11,6 +11,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 	</select>
 	
+	<!-- # 검색 조건 처리 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
 	<select id = "getListWithPaging" resultType="com.hyunwoo.domain.BoardVO">
 		<![CDATA[
 			SELECT
@@ -20,14 +41,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				SELECT /*+INDEX_DESC(TBL_BOARD PK_BOARD) */
 					   rownum rn, bno, title, content, writer, regdate, updatedate
 				FROM tbl_board
-				WHERE rownum <= #{pageNum} * #{amount}
+				WHERE 
+		]]>
+
+		<include refid="criteria"></include>		
+		
+		<![CDATA[
+				rownum <= #{pageNum} * #{amount}
 				)
 			WHERE rn > (#{pageNum} - 1) * #{amount}
 		]]>
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-		select count(*) from tbl_board where bno > 0
+		select count(*) 
+		  from tbl_board 
+		 where 
+		<include refid="criteria"></include>
+		 bno > 0
 	</select>
 	
 	<insert id = "insert">
