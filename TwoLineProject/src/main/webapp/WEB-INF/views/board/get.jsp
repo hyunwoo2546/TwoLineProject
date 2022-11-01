@@ -311,6 +311,8 @@
 
     <!-- Page level custom scripts -->
     <script src="/resources/js/demo/datatables-demo.js"></script>
+    <script src="/resources/js/reply.js"></script>
+    
     <!-- # 제이쿼리 -->
     <script type="text/javascript">
     	$(document).ready(function () {
@@ -331,6 +333,25 @@
 		});
     </script>
     
+    <!-- # 댓글 처리 -->
+    <script type="text/javascript">
+    
+    $(document).ready(function () {
+		console.log("===================");
+		console.log("댓글 테스트");
+		
+		var bnoValue = '<c:out value = "${board.bno}"/>';
+		
+		replyService.add(
+			{reply:"댓글 테슽", replyer:"tester", bno:bnoValue},
+			function (result) {
+				alert("RESULT : " + result);
+			}
+		);
+		
+	});
+    
+    </script>
     
 </body>
 </html>
