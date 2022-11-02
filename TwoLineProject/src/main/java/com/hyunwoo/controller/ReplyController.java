@@ -45,12 +45,10 @@ public class ReplyController {
 				: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@GetMapping(value = "/pages/{bno}/{page}",
-			consumes = "application/json",
-			produces = {
-//					MediaType.APPLICATION_XML_VALUE,
-					MediaType.APPLICATION_JSON_UTF8_VALUE
-			})
+	@GetMapping(value = "/pages/{bno}/{page}", 
+			    produces = { 
+			    		MediaType.APPLICATION_XML_VALUE,
+			    		MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<List<ReplyVO>> getList(
 			@PathVariable("page") int page,
 			@PathVariable("bno") Long bno) {

@@ -334,23 +334,20 @@
     </script>
     
     <!-- # 댓글 처리 -->
-    <script type="text/javascript">
+    <script>
     
-    $(document).ready(function () {
-		console.log("===================");
-		console.log("댓글 테스트");
-		
-		var bnoValue = '<c:out value = "${board.bno}"/>';
-		
-		replyService.add(
-			{reply:"댓글 테슽", replyer:"tester", bno:bnoValue},
-			function (result) {
-				alert("RESULT : " + result);
-			}
-		);
-		
+	console.log("===================");
+	console.log("댓글 테스트");
+	
+	var bnoValue = '<c:out value = "${board.bno}"/>';
+	
+   	replyService.getList({bno:bnoValue, page:1}, function(list){
+   
+	  for(var i = 0,  len = list.length||0; i < len; i++ ){
+	    console.log(list[i]);
+	  }
 	});
-    
+   	
     </script>
     
 </body>

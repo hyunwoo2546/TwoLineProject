@@ -2,6 +2,7 @@ console.log("Reply Module.....");
 
 var replyService = (function() {
 	
+	/*# 댓글 추가*/
 	function add(reply, callback, error) {
 		console.log("reply........");
 		
@@ -22,5 +23,29 @@ var replyService = (function() {
 			}
 		})
 	}
-	return {add:add};
+	
+	/*# 전체 댓글 조회*/
+	function getList(param,callback,error) {
+		
+		console.log("전체 댓글 조회....");
+		
+		var bno = param.bno;
+		var page = param.page || 1;
+		
+		$.getJSON("/replies/pages/" + bno + "/" + page + ".json",
+			function(data) {
+				if(callback) {
+					callback(data);
+				}
+			}).fail(function(xhr,status,err) {
+				if(error) {
+					error();
+				}
+			});
+	}
+	
+	return {
+		add : add,
+		getList : getList
+		};
 })();
