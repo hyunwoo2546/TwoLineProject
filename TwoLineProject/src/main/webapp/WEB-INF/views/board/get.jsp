@@ -275,9 +275,30 @@
 
                 </div>
                 <!-- /.container-fluid -->
+            <!-- # 댓글 -->
+            <div class="panel panel-default">
+            	<div class="panel-heading">
+            		<i class="fa fa-comments fa-fw"></i>Reply
+            	</div>
+	            <div class="panel-body">
+	            	<ul class = "chat">
+	            		<li class="left clearfix" data-rno = '12'>
+	            			<div>
+	            				<div class="header">
+	            					<strong class="primary-font"></strong>
+	            					<small class="pull-right text-muted"></small>
+	            					<p></p>
+	            				</div>
+	            			</div>
+	            		</li>
+	            	</ul>
+	            </div>
+            </div>
+	         <!-- # /end 댓글 -->
 
             </div>
             <!-- End of Main Content -->
+            
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -335,16 +356,35 @@
     
     <!-- # 댓글 처리 -->
     <script>
-    
-	console.log("===================");
-	console.log("댓글 테스트");
-	
-	var bnoValue = '<c:out value = "${board.bno}"/>';
-	
-	replyService.get(22, function (data) {
-		console.log(data);
-	})
-   	
+   		$(document).ready(function () {
+			var bnoValue = '<c:out value="${board.bno}" />';
+			var replyUL = $(".chat");
+			
+			showList(1);
+			
+			function showList(page) {
+				replyService.getList({bno:bnoValue,page: page||1}, function (list) {
+					
+					console.log("list : " + list);
+					
+					var str = "";
+					
+					if(list == null || list.length == 0) {
+						replyUL.html("");
+						
+						return;
+					}
+					for (var i = 0, len = list.length || 0; i < len; i++) {
+				           str +="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
+				           str +="<div><div class='header'><strong class='primary-font'>"+list[i].replyer+"</strong>"; 
+				           str +="<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small></div>";
+				           str +="<p>"+list[i].reply+"</p></div></li>";
+			       }
+					
+					replyUL.html(str);
+				});
+			}
+		});
     </script>
     
 </body>
