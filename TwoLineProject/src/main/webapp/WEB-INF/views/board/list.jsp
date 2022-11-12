@@ -318,7 +318,7 @@
                                     </div>
                                     <div>
                                         <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
+                                            told me that people say this to all dogs, even if they aren't good...</div> 
                                         <div class="small text-gray-500">Chicken the Dog Â· 2w</div>
                                     </div>
                                 </a>
